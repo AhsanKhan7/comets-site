@@ -1,0 +1,30 @@
+<svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="comet_shadow_32" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.25" />
+    </filter>
+    <filter id="comet_glow_32" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="50" cy="50" r="48" fill="#d97706" stroke="#b45309" stroke-width="2"/>
+  
+  <g filter="url(#comet_shadow_32)">
+    <g filter="url(#comet_glow_32)" transform="translate(50, 50) scale(1.5)">
+      <g transform="rotate(180 0 0)" fill="#ffffff">
+        <path d="m5.625 5.625c-6.2109 0-11.25 5.0391-11.25 11.25 6.2109 0 11.25-5.0391 11.25-11.25z" fill-rule="evenodd"/>
+        <path d="m5.625 5.625c6.2109 0 11.25-5.0391 11.25-11.25-6.2109 0-11.25 5.0391-11.25 11.25z" fill-rule="evenodd"/>
+        <path d="m5.625 -16.875c6.2109 0 11.25 5.0391 11.25 11.25-6.2109 0-11.25-5.0391-11.25-11.25z" fill-rule="evenodd"/>
+        <path d="m-5.625 -5.625c6.2109 0 11.25 5.0391 11.25 11.25-6.2109 0-11.25-5.0391-11.25-11.25z" fill-rule="evenodd"/>
+        <path d="m5.625 -16.875c-6.2109 0-11.25 5.0391-11.25 11.25 6.2109 0 11.25-5.0391 11.25-11.25z" fill-rule="evenodd"/>
+        <path d="m-16.875 5.625c6.2109 0 11.25-5.0391 11.25-11.25-6.2109 0-11.25 5.0391-11.25 11.25z" fill-rule="evenodd"/>
+        <path d="m-16.875 16.875c6.2109 0 11.25-5.0391 11.25-11.25-6.2109 0-11.25 5.0391-11.25 11.25z" fill-rule="evenodd"/>
+      </g>
+    </g>
+  </g>
+</svg>

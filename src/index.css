@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Roboto:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-bg text-text-primary font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-golden text-white rounded-full font-medium transition-all duration-300 hover:bg-golden-dark hover:scale-105 active:scale-95 shadow-lg shadow-golden/20 hover:shadow-golden/40 flex items-center justify-center gap-2;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-transparent text-text-primary border border-dark-border rounded-full font-medium transition-all duration-300 hover:bg-dark-surface hover:border-golden/50 active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-dark-surface border border-dark-border rounded-xl focus:outline-none focus:ring-2 focus:ring-golden/50 focus:border-golden transition-all duration-300 text-text-primary placeholder-text-muted;
+  }
+
+  .glass-panel {
+    @apply bg-dark-surface/80 backdrop-blur-md border border-white/5 shadow-xl;
+  }
+}
