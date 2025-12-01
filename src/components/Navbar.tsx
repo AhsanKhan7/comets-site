@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Chrome, Menu, X, Youtube } from 'lucide-react';
 import logo from '../assets/icons/icon128.svg';
 import { useExtension } from '../context/ExtensionContext';
+import { trackChromeStoreClick, trackEvent } from '../utils/analytics';
 
 const navLinks = [
   { name: 'Features', href: '#work' },
@@ -46,6 +47,7 @@ const Navbar = () => {
               href="https://youtube.com" 
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent('Navigation', 'click', 'YouTube Button')}
               className="btn-primary text-sm px-5 py-2.5 group bg-red-600 hover:bg-red-700 border-red-500/50 text-white"
             >
               <Youtube size={18} />
@@ -56,6 +58,7 @@ const Navbar = () => {
               href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd" 
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackChromeStoreClick}
               className="btn-primary text-sm px-5 py-2.5 group"
             >
               <Chrome size={18} />
@@ -98,6 +101,7 @@ const Navbar = () => {
                   href="https://youtube.com" 
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent('Navigation', 'click', 'YouTube Button - Mobile')}
                   className="btn-primary w-full justify-center mt-4 gap-2 bg-red-600 hover:bg-red-700 border-red-500/50 text-white"
                 >
                   <Youtube size={18} />
@@ -108,6 +112,7 @@ const Navbar = () => {
                   href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd" 
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={trackChromeStoreClick}
                   className="btn-primary w-full justify-center mt-4 gap-2"
                 >
                   <Chrome size={18} />

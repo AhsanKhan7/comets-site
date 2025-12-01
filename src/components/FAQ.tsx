@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
+import { trackFAQClick } from '../utils/analytics';
 
 const faqs = [
   {
@@ -60,7 +61,13 @@ const FAQ = () => {
               className="border-b border-dark-border last:border-0"
             >
               <div
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                onClick={() => {
+                  const newIndex = openIndex === index ? null : index;
+                  setOpenIndex(newIndex);
+                  if (newIndex === index) {
+                    trackFAQClick(faq.question);
+                  }
+                }}
                 className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
               >
                 <span className="text-xl font-medium text-text-primary group-hover:text-golden transition-colors select-none">{faq.question}</span>
