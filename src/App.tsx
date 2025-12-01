@@ -3,7 +3,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Work from './components/Work';
-import About from './components/About';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 
@@ -14,7 +13,6 @@ function App() {
       <main>
         <Hero />
         <Work />
-        {/* <About /> */}
         <FAQ />
         <Contact />
       </main>
