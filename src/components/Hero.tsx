@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Chrome, Zap, Shield, Star, Youtube } from 'lucide-react';
 import { useExtension } from '../context/ExtensionContext';
+import mainFrameImg from '../assets/product-images/main-frame.png';
 
 const Hero = () => {
   const { isInstalled } = useExtension();
@@ -114,7 +115,7 @@ const Hero = () => {
             <div className="relative rounded-xl bg-dark-surface/50 p-2 ring-1 ring-white/10 backdrop-blur-sm shadow-2xl shadow-golden/10">
               <div className="absolute -inset-1 bg-gradient-to-r from-golden/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 animate-pulse" />
               <img 
-                src="/src/assets/product-images/main-frame.png" 
+                src={mainFrameImg} 
                 alt="Comets AI Dashboard" 
                 className="relative rounded-lg shadow-2xl border border-white/5 w-full h-auto"
               />

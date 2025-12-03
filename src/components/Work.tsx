@@ -1,6 +1,10 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Heart, Cloud, FileText, ArrowUpRight } from 'lucide-react';
+import emotionImg from '../assets/product-images/emotion.png';
+import wordcloudImg from '../assets/product-images/wordcloud.png';
+import summarizationImg from '../assets/product-images/summarization.png';
+import userPreferenceImg from '../assets/product-images/user-preference.png';
 
 const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.1)" }: { children: React.ReactNode, className?: string, spotlightColor?: string }) => {
   const divRef = useRef<HTMLDivElement>(null);
@@ -107,7 +111,7 @@ const Work = () => {
               <div className="w-full md:w-[45%] relative min-h-[300px] md:min-h-full overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-dark-surface/20 z-10" />
                 <img 
-                  src="/src/assets/product-images/emotion.png" 
+                  src={emotionImg} 
                   alt="Emotion Detection" 
                   className="absolute inset-0 w-full h-full object-cover object-right opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
@@ -130,7 +134,7 @@ const Work = () => {
               
               <div className="mt-auto relative flex-1 min-h-[200px] w-full">
                  <img 
-                  src="/src/assets/product-images/wordcloud.png" 
+                  src={wordcloudImg} 
                   alt="Word Cloud" 
                   className="absolute inset-0 w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                 />
@@ -153,7 +157,7 @@ const Work = () => {
               
               <div className="mt-auto relative flex-1 min-h-[200px] w-full">
                 <img 
-                  src="/src/assets/product-images/summarization.png" 
+                  src={summarizationImg} 
                   alt="Smart Summaries" 
                   className="absolute inset-0 w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                 />
@@ -182,7 +186,7 @@ const Work = () => {
               <div className="w-full md:w-[45%] relative min-h-[300px] md:min-h-full overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-dark-surface/20 z-10" />
                 <img 
-                  src="/src/assets/product-images/user-preference.png" 
+                  src={userPreferenceImg} 
                   alt="Custom Preferences" 
                   className="absolute inset-0 w-full h-full object-cover object-center opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
