@@ -104,11 +104,62 @@ const Hero = () => {
             </div> */}
           </motion.div>
 
+          {/* Hero Image / Dashboard Preview */}
+          <motion.div
+            initial={{ opacity: 0, y: 50, rotateX: 10 }}
+            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{ delay: 0.6, duration: 1, type: "spring" }}
+            className="mt-20 relative z-10 w-full max-w-5xl mx-auto perspective-1000"
+          >
+            <div className="relative rounded-xl bg-dark-surface/50 p-2 ring-1 ring-white/10 backdrop-blur-sm shadow-2xl shadow-golden/10">
+              <div className="absolute -inset-1 bg-gradient-to-r from-golden/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 animate-pulse" />
+              <img 
+                src="/src/assets/product-images/main-frame.png" 
+                alt="Comets AI Dashboard" 
+                className="relative rounded-lg shadow-2xl border border-white/5 w-full h-auto"
+              />
+              
+              {/* Floating Badge 1 */}
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -right-4 -top-8 md:-right-12 md:top-10 bg-dark-surface border border-white/10 p-3 rounded-xl shadow-xl backdrop-blur-md"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                    <Zap size={20} className="text-green-400" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-text-muted">Analysis Speed</div>
+                    <div className="text-sm font-bold text-text-primary">0.4s / comment</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Floating Badge 2 */}
+              <motion.div 
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -left-4 -bottom-8 md:-left-12 md:bottom-20 bg-dark-surface border border-white/10 p-3 rounded-xl shadow-xl backdrop-blur-md"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-golden/20 flex items-center justify-center">
+                    <Star size={20} className="text-golden" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-text-muted">Sentiment Accuracy</div>
+                    <div className="text-sm font-bold text-text-primary">98.5%</div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
           {/* Trust Badges / Stats (Awake style pills) */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
             className="mt-20 flex flex-wrap justify-center gap-4"
           >
             <div className="px-6 py-3 bg-dark-surface rounded-full flex items-center gap-3 text-text-primary font-medium border border-dark-border hover:border-golden/30 transition-colors">

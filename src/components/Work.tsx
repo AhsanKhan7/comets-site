@@ -1,54 +1,42 @@
 import { motion } from 'framer-motion';
-import { BarChart2, Zap, Search, Heart, Cloud, FileText, ArrowUpRight } from 'lucide-react';
+import { Search, Heart, Cloud, FileText, ArrowUpRight } from 'lucide-react';
 
 const features = [
   {
     title: "Emotion Detection",
-    description: "Instantly gauge the mood of the audience with AI-powered sentiment analysis.",
+    description: "Instantly gauge the mood of the audience with AI-powered sentiment analysis. Understand how your viewers feel at a glance.",
     icon: Heart,
+    image: "/src/assets/product-images/emotion.png",
     color: "bg-golden/10",
     textColor: "text-golden",
     delay: 0
   },
   {
-    title: "Smart Summaries",
-    description: "Get the gist of thousands of comments in a single, concise paragraph.",
-    icon: FileText,
-    color: "bg-cream/10",
-    textColor: "text-cream",
-    delay: 0.1
-  },
-  {
     title: "Visual Word Clouds",
-    description: "See what everyone is talking about with beautiful, interactive word clouds.",
+    description: "See what everyone is talking about with beautiful, interactive word clouds. Spot recurring themes and keywords instantly.",
     icon: Cloud,
+    image: "/src/assets/product-images/wordcloud.png",
     color: "bg-golden/10",
     textColor: "text-golden",
     delay: 0.2
   },
   {
-    title: "Pro Search",
-    description: "Find exactly what you're looking for with advanced filtering and search.",
+    title: "Smart Summaries",
+    description: "Get the gist of thousands of comments in a single, concise paragraph. Save hours of reading time with AI-generated summaries.",
+    icon: FileText,
+    image: "/src/assets/product-images/personalized-comments.png",
+    color: "bg-cream/10",
+    textColor: "text-cream",
+    delay: 0.1
+  },
+  {
+    title: "Custom Preferences",
+    description: "Tailor the analysis to your specific needs. Adjust sensitivity, filter by keywords, and customize your dashboard.",
     icon: Search,
+    image: "/src/assets/product-images/user-prefrences.png",
     color: "bg-cream/10",
     textColor: "text-cream",
     delay: 0.3
-  },
-  {
-    title: "Trend Spotting",
-    description: "Identify rising topics and viral discussions before they peak.",
-    icon: BarChart2,
-    color: "bg-golden/10",
-    textColor: "text-golden",
-    delay: 0.4
-  },
-  {
-    title: "Real-time Analysis",
-    description: "Watch insights update live as new comments roll in.",
-    icon: Zap,
-    color: "bg-cream/10",
-    textColor: "text-cream",
-    delay: 0.5
   }
 ];
 
@@ -58,7 +46,7 @@ const Work = () => {
       <div className="container mx-auto px-6">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8 text-center">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-32 gap-8 text-center">
           <div className="mx-auto max-w-2xl">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -79,33 +67,52 @@ const Work = () => {
               We help creators and brands understand their audience with precision tools designed for clarity.
             </motion.p>
           </div>
-          
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Features Showcase - Alternating Layout */}
+        <div className="flex flex-col gap-32 mb-32">
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: feature.delay, duration: 0.5 }}
-              whileHover={{ y: -10 }}
-              className={`group relative p-8 rounded-[2rem] bg-dark-surface border border-dark-border hover:border-golden/30 transition-all duration-300`}
-            >
-              <div className="flex justify-between items-start mb-8">
-                <div className={`w-12 h-12 rounded-full bg-dark-elevated flex items-center justify-center shadow-sm ${feature.textColor}`}>
-                  <feature.icon size={24} />
-                </div>
-                <div className="w-10 h-10 rounded-full bg-dark-elevated flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowUpRight size={20} className="text-text-primary" />
-                </div>
-              </div>
+            <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
               
-              <h3 className="text-2xl font-bold text-text-primary mb-3">{feature.title}</h3>
-              <p className="text-text-secondary leading-relaxed">{feature.description}</p>
-            </motion.div>
+              {/* Text Content */}
+              <motion.div 
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="flex-1"
+              >
+                <div className={`w-14 h-14 rounded-2xl ${feature.color} flex items-center justify-center mb-6`}>
+                  <feature.icon size={28} className={feature.textColor} />
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-6">{feature.title}</h3>
+                <p className="text-xl text-text-secondary leading-relaxed mb-8">{feature.description}</p>
+              </motion.div>
+
+              {/* Image Content */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9, rotate: index % 2 === 0 ? 2 : -2 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="flex-1 w-full"
+              >
+                <div className="relative group">
+                  <div className={`absolute -inset-4 ${feature.color} rounded-[2rem] blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
+                  <div className="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-dark-surface/50 backdrop-blur-sm">
+                    <img 
+                      src={feature.image} 
+                      alt={feature.title} 
+                      className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    
+                    {/* Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                </div>
+              </motion.div>
+
+            </div>
           ))}
         </div>
 
