@@ -1,44 +1,58 @@
+import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Heart, Cloud, FileText, ArrowUpRight } from 'lucide-react';
 
-const features = [
-  {
-    title: "Emotion Detection",
-    description: "Instantly gauge the mood of the audience with AI-powered sentiment analysis. Understand how your viewers feel at a glance.",
-    icon: Heart,
-    image: "/src/assets/product-images/emotion.png",
-    color: "bg-golden/10",
-    textColor: "text-golden",
-    delay: 0
-  },
-  {
-    title: "Visual Word Clouds",
-    description: "See what everyone is talking about with beautiful, interactive word clouds. Spot recurring themes and keywords instantly.",
-    icon: Cloud,
-    image: "/src/assets/product-images/wordcloud.png",
-    color: "bg-golden/10",
-    textColor: "text-golden",
-    delay: 0.2
-  },
-  {
-    title: "Smart Summaries",
-    description: "Get the gist of thousands of comments in a single, concise paragraph. Save hours of reading time with AI-generated summaries.",
-    icon: FileText,
-    image: "/src/assets/product-images/personalized-comments.png",
-    color: "bg-cream/10",
-    textColor: "text-cream",
-    delay: 0.1
-  },
-  {
-    title: "Custom Preferences",
-    description: "Tailor the analysis to your specific needs. Adjust sensitivity, filter by keywords, and customize your dashboard.",
-    icon: Search,
-    image: "/src/assets/product-images/user-prefrences.png",
-    color: "bg-cream/10",
-    textColor: "text-cream",
-    delay: 0.3
-  }
-];
+const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.1)" }: { children: React.ReactNode, className?: string, spotlightColor?: string }) => {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!divRef.current) return;
+
+    const div = divRef.current;
+    const rect = div.getBoundingClientRect();
+
+    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  const handleFocus = () => {
+    setOpacity(1);
+  };
+
+  const handleBlur = () => {
+    setOpacity(0);
+  };
+
+  const handleMouseEnter = () => {
+    setOpacity(1);
+  };
+
+  const handleMouseLeave = () => {
+    setOpacity(0);
+  };
+
+  return (
+    <div
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-dark-surface/50 ${className}`}
+    >
+      <div
+        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+        style={{
+          opacity,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`,
+        }}
+      />
+      <div className="relative h-full">{children}</div>
+    </div>
+  );
+};
 
 const Work = () => {
   return (
@@ -46,7 +60,7 @@ const Work = () => {
       <div className="container mx-auto px-6">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-32 gap-8 text-center">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8 text-center">
           <div className="mx-auto max-w-2xl">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -69,51 +83,113 @@ const Work = () => {
           </div>
         </div>
 
-        {/* Features Showcase - Alternating Layout */}
-        <div className="flex flex-col gap-32 mb-32">
-          {features.map((feature, index) => (
-            <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
-              
-              {/* Text Content */}
-              <motion.div 
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="flex-1"
-              >
-                <div className={`w-14 h-14 rounded-2xl ${feature.color} flex items-center justify-center mb-6`}>
-                  <feature.icon size={28} className={feature.textColor} />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-6">{feature.title}</h3>
-                <p className="text-xl text-text-secondary leading-relaxed mb-8">{feature.description}</p>
-              </motion.div>
-
-              {/* Image Content */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9, rotate: index % 2 === 0 ? 2 : -2 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="flex-1 w-full"
-              >
-                <div className="relative group">
-                  <div className={`absolute -inset-4 ${feature.color} rounded-[2rem] blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
-                  <div className="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-dark-surface/50 backdrop-blur-sm">
-                    <img 
-                      src={feature.image} 
-                      alt={feature.title} 
-                      className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
-                    />
-                    
-                    {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        {/* Spotlight Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32 auto-rows-[400px]">
+          
+          {/* Feature 1: Emotion Detection (Large - Spans 2 cols) */}
+          <SpotlightCard className="md:col-span-2 group" spotlightColor="rgba(234, 179, 8, 0.15)">
+            <div className="h-full flex flex-col md:flex-row relative z-10">
+              {/* Text Content (40%) */}
+              <div className="w-full md:w-[55%] p-8 md:p-10 flex flex-col justify-center relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-dark-surface via-dark-surface/80 to-transparent z-0" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-golden/10 flex items-center justify-center shrink-0">
+                      <Heart size={24} className="text-golden" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-text-primary">Emotion Detection</h3>
                   </div>
+                  <p className="text-text-secondary text-lg leading-relaxed">Instantly gauge the mood of the audience with AI-powered sentiment analysis.</p>
                 </div>
-              </motion.div>
-
+              </div>
+              
+              {/* Image Content (60%) */}
+              <div className="w-full md:w-[45%] relative min-h-[300px] md:min-h-full overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-dark-surface/20 z-10" />
+                <img 
+                  src="/src/assets/product-images/emotion.png" 
+                  alt="Emotion Detection" 
+                  className="absolute inset-0 w-full h-full object-cover object-right opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                />
+              </div>
             </div>
-          ))}
+          </SpotlightCard>
+
+          {/* Feature 2: Word Clouds (Tall/Square - Spans 1 col) */}
+          <SpotlightCard className="md:col-span-1 group" spotlightColor="rgba(168, 85, 247, 0.15)">
+            <div className="h-full flex flex-col relative z-10">
+              <div className="p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
+                    <Cloud size={24} className="text-purple-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-text-primary leading-tight">Visual Word Clouds</h3>
+                </div>
+                <p className="text-text-secondary text-lg leading-relaxed">Spot recurring themes instantly.</p>
+              </div>
+              
+              <div className="mt-auto relative flex-1 min-h-[200px] w-full">
+                 <img 
+                  src="/src/assets/product-images/wordcloud.png" 
+                  alt="Word Cloud" 
+                  className="absolute inset-0 w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </SpotlightCard>
+
+          {/* Feature 3: Smart Summaries (Square - Spans 1 col) */}
+          <SpotlightCard className="md:col-span-1 group" spotlightColor="rgba(34, 197, 94, 0.15)">
+            <div className="h-full flex flex-col relative z-10">
+              <div className="p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
+                    <FileText size={24} className="text-green-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-text-primary leading-tight">Smart Summaries</h3>
+                </div>
+                <p className="text-text-secondary text-lg leading-relaxed">Summarize thousands of comments.</p>
+              </div>
+              
+              <div className="mt-auto relative flex-1 min-h-[200px] w-full">
+                <img 
+                  src="/src/assets/product-images/summarization.png" 
+                  alt="Smart Summaries" 
+                  className="absolute inset-0 w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
+            </div>
+          </SpotlightCard>
+
+          {/* Feature 4: Custom Preferences (Large - Spans 2 cols) */}
+          <SpotlightCard className="md:col-span-2 group" spotlightColor="rgba(59, 130, 246, 0.15)">
+            <div className="h-full flex flex-col md:flex-row relative z-10">
+              {/* Text Content (55%) */}
+              <div className="w-full md:w-[55%] p-8 md:p-10 flex flex-col justify-center relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-dark-surface via-dark-surface/80 to-transparent z-0" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
+                      <Search size={24} className="text-blue-400" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-text-primary">Custom Preferences</h3>
+                  </div>
+                  <p className="text-text-secondary text-lg leading-relaxed">Tailor the analysis to your specific needs. Adjust sensitivity, filter by keywords, and customize your dashboard.</p>
+                </div>
+              </div>
+              
+              {/* Image Content (45%) */}
+              <div className="w-full md:w-[45%] relative min-h-[300px] md:min-h-full overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-dark-surface/20 z-10" />
+                <img 
+                  src="/src/assets/product-images/user-preference.png" 
+                  alt="Custom Preferences" 
+                  className="absolute inset-0 w-full h-full object-cover object-center opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                />
+              </div>
+            </div>
+          </SpotlightCard>
+
         </div>
 
         {/* Large Callout Card */}
