@@ -61,7 +61,7 @@ const Hero = () => {
           >
             {isInstalled ? (
               <a 
-                href="https://youtube.com" 
+                href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-primary text-lg px-8 py-4 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 group bg-red-600 hover:bg-red-700 border-red-500/50 text-white"

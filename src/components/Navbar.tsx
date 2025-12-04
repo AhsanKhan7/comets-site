@@ -44,7 +44,7 @@ const Navbar = () => {
         <div className="hidden md:block">
           {isInstalled ? (
             <a 
-              href="https://youtube.com" 
+              href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true" 
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('Navigation', 'click', 'YouTube Button')}
@@ -98,7 +98,7 @@ const Navbar = () => {
               ))}
               {isInstalled ? (
                 <a 
-                  href="https://youtube.com" 
+                  href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true" 
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackEvent('Navigation', 'click', 'YouTube Button - Mobile')}
