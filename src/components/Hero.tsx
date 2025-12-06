@@ -24,7 +24,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-6xl md:text-[80px] font-[500] text-text-primary mb-8 leading-[1.1] tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-[500] text-text-primary mb-8 leading-[1.1] tracking-tight"
           >
             {isInstalled ? (
               <>
@@ -44,7 +44,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-text-secondary text-xl md:text-2xl mb-12 max-w-2xl leading-relaxed"
+            className="text-text-secondary text-lg sm:text-xl md:text-2xl mb-12 max-w-2xl leading-relaxed"
           >
             {isInstalled 
               ? "Comets AI is installed and ready. Head over to YouTube to start analyzing comments."
@@ -80,7 +80,7 @@ const Hero = () => {
                 className="btn-primary text-lg px-8 py-4 shadow-xl shadow-golden/20 hover:shadow-golden/40 group"
               >
                 <Chrome size={24} />
-                <span>Add to Chrome - It's Free</span>
+                <span className="whitespace-nowrap"><span className="inline sm:hidden">Add to Chrome</span><span className="hidden sm:inline">Add to Chrome - It's Free</span></span>
                 <div className="bg-white/20 rounded-full p-1 group-hover:rotate-45 transition-transform duration-300">
                   <ArrowUpRight size={16} />
                 </div>

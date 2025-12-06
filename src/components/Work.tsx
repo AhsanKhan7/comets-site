@@ -70,7 +70,7 @@ const Work = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-6xl font-bold text-text-primary mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-tight"
             >
               Turn chaos into <br />
               <span className="font-serif italic font-normal text-golden">crystal-clear insights</span>
@@ -80,7 +80,7 @@ const Work = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-text-secondary leading-relaxed"
+              className="text-lg sm:text-xl text-text-secondary leading-relaxed"
             >
               We help creators and brands understand their audience with precision tools designed for clarity.
             </motion.p>
@@ -101,7 +101,7 @@ const Work = () => {
                     <div className="w-12 h-12 rounded-xl bg-golden/10 flex items-center justify-center shrink-0">
                       <Heart size={24} className="text-golden" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-text-primary">Emotion Detection</h3>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">Emotion Detection</h3>
                   </div>
                   <p className="text-text-secondary text-lg leading-relaxed">Instantly gauge the mood of the audience with AI-powered sentiment analysis.</p>
                 </div>
@@ -127,16 +127,16 @@ const Work = () => {
                   <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
                     <Cloud size={24} className="text-purple-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-text-primary leading-tight">Visual Word Clouds</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary leading-tight">Visual Word Clouds</h3>
                 </div>
-                <p className="text-text-secondary text-lg leading-relaxed">Spot recurring themes instantly.</p>
+                <p className="text-text-secondary text-base sm:text-lg leading-relaxed">Spot recurring themes instantly.</p>
               </div>
               
               <div className="mt-auto relative flex-1 min-h-[200px] w-full">
                  <img 
                   src={wordcloudImg} 
                   alt="Word Cloud" 
-                  className="absolute inset-0 w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                  className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -150,16 +150,16 @@ const Work = () => {
                   <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
                     <FileText size={24} className="text-green-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-text-primary leading-tight">Smart Summaries</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary leading-tight">Smart Summaries</h3>
                 </div>
-                <p className="text-text-secondary text-lg leading-relaxed">Summarize thousands of comments.</p>
+                <p className="text-text-secondary text-base sm:text-lg leading-relaxed">Summarize long comments.</p>
               </div>
               
               <div className="mt-auto relative flex-1 min-h-[200px] w-full">
                 <img 
                   src={summarizationImg} 
                   alt="Smart Summaries" 
-                  className="absolute inset-0 w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                  className="absolute inset-0 w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity"
                 />
               </div>
             </div>
@@ -176,9 +176,9 @@ const Work = () => {
                     <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
                       <Search size={24} className="text-blue-400" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-text-primary">Custom Preferences</h3>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">Custom Preferences</h3>
                   </div>
-                  <p className="text-text-secondary text-lg leading-relaxed">Tailor the analysis to your specific needs. Adjust sensitivity, filter by keywords, and customize your dashboard.</p>
+                  <p className="text-text-secondary text-lg leading-relaxed">Tailor analysis with custom filters and sensitivity settings.</p>
                 </div>
               </div>
               
@@ -204,8 +204,8 @@ const Work = () => {
           className="mt-8 rounded-[2.5rem] bg-gradient-to-br from-dark-surface to-dark-elevated border border-dark-border p-12 md:p-20 relative overflow-hidden"
         >
           <div className="relative z-10 max-w-3xl">
-            <h3 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">Ready to transform your workflow?</h3>
-            <p className="text-text-secondary text-xl mb-10 max-w-xl">Join thousands of creators who are saving hours every week with Comets AI.</p>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-6">Ready to transform your workflow?</h3>
+            <p className="text-text-secondary text-base sm:text-lg md:text-xl mb-10 max-w-xl">Join thousands of creators who are saving hours every week with Comets AI.</p>
             <a 
               href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd" 
               target="_blank" 

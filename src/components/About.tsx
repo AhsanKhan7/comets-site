@@ -22,7 +22,7 @@ const About = () => {
               transition={{ delay: index * 0.1 }}
               className="text-center md:text-left"
             >
-              <div className="text-7xl md:text-8xl font-bold text-text-primary mb-2 tracking-tighter">
+              <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-text-primary mb-2 tracking-tighter">
                 {stat.value}
               </div>
               <div className="text-text-muted font-medium text-lg uppercase tracking-wide">

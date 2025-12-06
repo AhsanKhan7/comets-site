@@ -42,10 +42,10 @@ const FAQ = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-text-primary mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-tight">
             Common <span className="font-serif italic font-normal text-golden">Questions</span>
           </h2>
-          <p className="text-xl text-text-secondary">
+          <p className="text-lg sm:text-xl text-text-secondary">
             Everything you need to know about Comets AI.
           </p>
         </motion.div>
@@ -70,7 +70,7 @@ const FAQ = () => {
                 }}
                 className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
               >
-                <span className="text-xl font-medium text-text-primary group-hover:text-golden transition-colors select-none">{faq.question}</span>
+                <span className="text-base sm:text-lg md:text-xl font-medium text-text-primary group-hover:text-golden transition-colors select-none">{faq.question}</span>
                 <span className={`text-text-muted group-hover:text-golden transition-colors ${openIndex === index ? 'rotate-45' : ''} duration-300`}>
                   <Plus size={24} />
                 </span>
@@ -85,7 +85,7 @@ const FAQ = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="pb-8 text-text-secondary text-lg leading-relaxed">
+                    <div className="pb-8 text-text-secondary text-base sm:text-lg leading-relaxed">
                       {faq.answer}
                     </div>
                   </motion.div>

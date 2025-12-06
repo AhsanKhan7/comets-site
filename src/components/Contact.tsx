@@ -24,7 +24,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-6xl md:text-8xl font-bold text-text-primary mb-8 leading-tight tracking-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-text-primary mb-8 leading-tight tracking-tight">
               {isInstalled ? (
                 <>
                   Enjoying <br />
@@ -37,7 +37,7 @@ const Contact = () => {
                 </>
               )}
             </h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-10">
+            <p className="text-base sm:text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10">
               {isInstalled 
                 ? "We'd love to hear your feedback. Leave us a review on the Chrome Web Store."
                 : "Join thousands of creators, marketers, and researchers who are already using Comets AI to understand their audience better."
