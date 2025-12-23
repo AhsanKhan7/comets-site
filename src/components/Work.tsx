@@ -62,11 +62,11 @@ const Work = () => {
   return (
     <section id="work" className="py-32 bg-dark-bg relative overflow-hidden">
       <div className="container mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8 text-center">
           <div className="mx-auto max-w-2xl">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -75,21 +75,21 @@ const Work = () => {
               Turn chaos into <br />
               <span className="font-serif italic font-normal text-golden">crystal-clear insights</span>
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               className="text-lg sm:text-xl text-text-secondary leading-relaxed"
             >
-              We help creators and brands understand their audience with precision tools designed for clarity.
+              The ultimate YouTube comment search tool. We help creators and brands analyze YouTube comments with precision AI tools designed for clarity.
             </motion.p>
           </div>
         </div>
 
         {/* Spotlight Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32 auto-rows-[400px]">
-          
+
           {/* Feature 1: Emotion Detection (Large - Spans 2 cols) */}
           <SpotlightCard className="md:col-span-2 group" spotlightColor="rgba(234, 179, 8, 0.15)">
             <div className="h-full flex flex-col md:flex-row relative z-10">
@@ -101,18 +101,18 @@ const Work = () => {
                     <div className="w-12 h-12 rounded-xl bg-golden/10 flex items-center justify-center shrink-0">
                       <Heart size={24} className="text-golden" />
                     </div>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">Emotion Detection</h3>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">AI Sentiment & Emotion Analysis</h3>
                   </div>
-                  <p className="text-text-secondary text-lg leading-relaxed">Instantly gauge the mood of the audience with AI-powered sentiment analysis.</p>
+                  <p className="text-text-secondary text-lg leading-relaxed">Our advanced YouTube comment sentiment analysis tool detects joy, frustration, and sarcasm in real-time. Get an instant emotional overview of any comment section.</p>
                 </div>
               </div>
-              
+
               {/* Image Content (60%) */}
               <div className="w-full md:w-[45%] relative min-h-[300px] md:min-h-full overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-dark-surface/20 z-10" />
-                <img 
-                  src={emotionImg} 
-                  alt="Emotion Detection" 
+                <img
+                  src={emotionImg}
+                  alt="Emotion Detection"
                   className="absolute inset-0 w-full h-full object-cover object-right opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
@@ -127,15 +127,15 @@ const Work = () => {
                   <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
                     <Cloud size={24} className="text-purple-400" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary leading-tight">Visual Word Clouds</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary leading-tight">Visual Insights & Summaries</h3>
                 </div>
-                <p className="text-text-secondary text-base sm:text-lg leading-relaxed">Spot recurring themes instantly.</p>
+                <p className="text-text-secondary text-base sm:text-lg leading-relaxed">Visualize trending topics with word clouds and patterns. Perfect for researchers looking to analyze YouTube comments at scale without reading every thread.</p>
               </div>
-              
+
               <div className="mt-auto relative flex-1 min-h-[200px] w-full">
-                 <img 
-                  src={wordcloudImg} 
-                  alt="Word Cloud" 
+                <img
+                  src={wordcloudImg}
+                  alt="Word Cloud"
                   className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
@@ -154,11 +154,11 @@ const Work = () => {
                 </div>
                 <p className="text-text-secondary text-base sm:text-lg leading-relaxed">Summarize long comments.</p>
               </div>
-              
+
               <div className="mt-auto relative flex-1 min-h-[200px] w-full">
-                <img 
-                  src={summarizationImg} 
-                  alt="Smart Summaries" 
+                <img
+                  src={summarizationImg}
+                  alt="Smart Summaries"
                   className="absolute inset-0 w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity"
                 />
               </div>
@@ -176,18 +176,18 @@ const Work = () => {
                     <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
                       <Search size={24} className="text-blue-400" />
                     </div>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">Custom Preferences</h3>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">Smart Search & Filters</h3>
                   </div>
-                  <p className="text-text-secondary text-lg leading-relaxed">Tailor analysis with custom filters and sensitivity settings.</p>
+                  <p className="text-text-secondary text-lg leading-relaxed">The most powerful way to search YouTube comments. Filter by keyword, timestamp, or emotion to find specific comments or questions in seconds.</p>
                 </div>
               </div>
-              
+
               {/* Image Content (45%) */}
               <div className="w-full md:w-[45%] relative min-h-[300px] md:min-h-full overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-dark-surface/20 z-10" />
-                <img 
-                  src={userPreferenceImg} 
-                  alt="Custom Preferences" 
+                <img
+                  src={userPreferenceImg}
+                  alt="Custom Preferences"
                   className="absolute inset-0 w-full h-full object-cover object-center opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
@@ -197,7 +197,7 @@ const Work = () => {
         </div>
 
         {/* Large Callout Card */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -205,10 +205,10 @@ const Work = () => {
         >
           <div className="relative z-10 max-w-3xl">
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-6">Ready to transform your workflow?</h3>
-            <p className="text-text-secondary text-base sm:text-lg md:text-xl mb-10 max-w-xl">Join thousands of creators who are saving hours every week with Comets AI.</p>
-            <a 
-              href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd" 
-              target="_blank" 
+            <p className="text-text-secondary text-base sm:text-lg md:text-xl mb-10 max-w-xl">Join creators, researchers, and marketers who use our YouTube comment analyzer to save hours every week.</p>
+            <a
+              href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd"
+              target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex"
             >
@@ -216,7 +216,7 @@ const Work = () => {
               <ArrowUpRight size={20} />
             </a>
           </div>
-          
+
           {/* Abstract Background Shapes */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-golden/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cream/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />

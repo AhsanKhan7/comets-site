@@ -5,28 +5,28 @@ import { trackFAQClick } from '../utils/analytics';
 
 const faqs = [
   {
-    question: "Is there a fee associated with it?",
-    answer: "Nope! Comets AI is free to use. We may later add premium features for those wishing even deeper analysis, but the core experience will always remain free."
+    question: "Is this free?",
+    answer: "Yes! Comets AI is completely free. We may add optional premium features later, but core functionality stays free forever."
   },
   {
-    question: "Can I use it on any video?",
-    answer: "Yep! Any public YouTube video that has comments works perfectly. Music videos, vlogs, reviews, tutorials—you name it."
+    question: "Does it work on all YouTube videos?",
+    answer: "Yes—any public video with comments enabled. Music videos, reviews, vlogs, tutorials, podcasts, everything."
   },
   {
-    question: "Will this mess up my YouTube experience?",
-    answer: "Not at all. Comets AI is lightweight and only works when you click it. Your videos play normally, and everything stays fast."
+    question: "Will it slow down YouTube?",
+    answer: "No. Comets AI is lightweight and only activates when you click the icon. Videos play normally."
   },
   {
-    question: "Must I be a technical whiz?",
-    answer: "If you can install a Chrome extension—it just requires clicking \"Add to Chrome\"—you're golden. It's designed for regular people, not programmers."
+    question: "How accurate is the emotion detection?",
+    answer: "Our AI is trained on millions of YouTube comments and understands context, sarcasm, and nuance. It catches what people mean, not just what they type."
   },
   {
     question: "Can I use this for research or school projects?",
-    answer: "It's perfect for analyzing public opinion, studying trends on social media, and understanding community reactions."
+    answer: "Absolutely! Perfect for analyzing public opinion, studying social media trends, and understanding community reactions."
   },
   {
-    question: "Does the emotion detection even work?",
-    answer: "We have trained our AI on millions of real comments. It understands context, sarcasm, and the nuances of how people actually talk online. And it's surprisingly good at catching what humans mean, not just what they say."
+    question: "Do I need technical skills?",
+    answer: "If you can click \"Add to Chrome,\" you're set. Designed for everyone, not just tech experts."
   }
 ];
 
@@ -46,7 +46,7 @@ const FAQ = () => {
             Common <span className="font-serif italic font-normal text-golden">Questions</span>
           </h2>
           <p className="text-lg sm:text-xl text-text-secondary">
-            Everything you need to know about Comets AI.
+            Everything you need to know about the Comets AI YouTube comment search tool.
           </p>
         </motion.div>
 
@@ -75,7 +75,7 @@ const FAQ = () => {
                   <Plus size={24} />
                 </span>
               </div>
-              
+
               <AnimatePresence initial={false}>
                 {openIndex === index && (
                   <motion.div

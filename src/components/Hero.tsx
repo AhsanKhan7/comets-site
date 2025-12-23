@@ -33,8 +33,8 @@ const Hero = () => {
               </>
             ) : (
               <>
-                Discover what people <br />
-                <span className="font-serif italic font-normal text-golden">really think</span>
+                YouTube Comment Search <br />
+                <span className="font-serif italic font-normal text-golden">& AI Analyzer Tool</span>
               </>
             )}
           </motion.h1>
@@ -48,7 +48,7 @@ const Hero = () => {
           >
             {isInstalled
               ? "Comets AI is installed and ready. Head over to YouTube to start analyzing comments."
-              : "AI analyzes emotions, sentiment & trends in YouTube comments instantly. Stop endless scrolling and get the insights that matter."
+              : "The easiest way to search YouTube comments by keyword, timestamp, or topic. Analyze sentiment and find specific comments instantly with our AI-powered extension."
             }
           </motion.p>
 
