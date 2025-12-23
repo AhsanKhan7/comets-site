@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Chrome, Zap, Shield, Star, Youtube } from 'lucide-react';
 import { useExtension } from '../context/ExtensionContext';
-import mainFrameImg from '../assets/product-images/main-frame.png';
+import mainFrameImg from '../assets/product-images/main-frame2.png';
 
 const Hero = () => {
   const { isInstalled } = useExtension();
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32 pb-20 bg-dark-bg">
-      
+
       {/* Soft Gradient Background (Aurora Effect) - Dark Mode */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] bg-golden/10 rounded-full blur-[120px] animate-float" />
@@ -18,9 +18,9 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 z-10 relative">
         <div className="mt-20 flex flex-col items-center text-center max-w-5xl mx-auto">
-          
+
           {/* Main Heading */}
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -38,31 +38,31 @@ const Hero = () => {
               </>
             )}
           </motion.h1>
-          
+
           {/* Subheading */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-text-secondary text-lg sm:text-xl md:text-2xl mb-12 max-w-2xl leading-relaxed"
           >
-            {isInstalled 
+            {isInstalled
               ? "Comets AI is installed and ready. Head over to YouTube to start analyzing comments."
               : "AI analyzes emotions, sentiment & trends in YouTube comments instantly. Stop endless scrolling and get the insights that matter."
             }
           </motion.p>
-          
+
           {/* CTA Buttons */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             className="flex flex-col sm:flex-row gap-6 items-center justify-center"
           >
             {isInstalled ? (
-              <a 
-                href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true" 
-                target="_blank" 
+              <a
+                href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-lg px-8 py-4 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 group bg-red-600 hover:bg-red-700 border-red-500/50 text-white"
               >
@@ -73,9 +73,9 @@ const Hero = () => {
                 </div>
               </a>
             ) : (
-              <a 
-                href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd" 
-                target="_blank" 
+              <a
+                href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-lg px-8 py-4 shadow-xl shadow-golden/20 hover:shadow-golden/40 group"
               >
@@ -86,7 +86,7 @@ const Hero = () => {
                 </div>
               </a>
             )}
-            
+
             {/* User Reviews for later */}
             {/* <div className="flex items-center gap-2">
               <div className="flex -space-x-3">
@@ -114,14 +114,14 @@ const Hero = () => {
           >
             <div className="relative rounded-xl bg-dark-surface/50 p-2 ring-1 ring-white/10 backdrop-blur-sm shadow-2xl shadow-golden/10">
               <div className="absolute -inset-1 bg-gradient-to-r from-golden/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 animate-pulse" />
-              <img 
-                src={mainFrameImg} 
-                alt="Comets AI Dashboard" 
+              <img
+                src={mainFrameImg}
+                alt="Comets AI Dashboard"
                 className="relative rounded-lg shadow-2xl border border-white/5 w-full h-auto"
               />
-              
+
               {/* Floating Badge 1 */}
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -right-4 -top-8 md:-right-12 md:top-10 bg-dark-surface border border-white/10 p-3 rounded-xl shadow-xl backdrop-blur-md"
@@ -138,7 +138,7 @@ const Hero = () => {
               </motion.div>
 
               {/* Floating Badge 2 */}
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="absolute -left-4 -bottom-8 md:-left-12 md:bottom-20 bg-dark-surface border border-white/10 p-3 rounded-xl shadow-xl backdrop-blur-md"
@@ -157,7 +157,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Trust Badges / Stats (Awake style pills) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
