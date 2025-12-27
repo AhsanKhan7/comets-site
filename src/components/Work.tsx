@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Heart, Cloud, FileText, ArrowUpRight } from 'lucide-react';
 import emotionImg from '../assets/product-images/emotion.png';
 import wordcloudImg from '../assets/product-images/wordcloud.png';
 import summarizationImg from '../assets/product-images/summarization.png';
 import userPreferenceImg from '../assets/product-images/user-preference.png';
+import { trackSectionView, trackFeatureInteraction, trackCTAClick } from '../utils/analytics';
 
 const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.1)" }: { children: React.ReactNode, className?: string, spotlightColor?: string }) => {
   const divRef = useRef<HTMLDivElement>(null);
@@ -59,6 +60,11 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 2
 };
 
 const Work = () => {
+  // Track work section view
+  React.useEffect(() => {
+    trackSectionView('Work');
+  }, []);
+
   return (
     <section id="work" className="py-32 bg-dark-bg relative overflow-hidden">
       <div className="container mx-auto px-6">
@@ -91,8 +97,14 @@ const Work = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32 auto-rows-[400px]">
 
           {/* Feature 1: Emotion Detection (Large - Spans 2 cols) */}
-          <SpotlightCard className="md:col-span-2 group" spotlightColor="rgba(234, 179, 8, 0.15)">
-            <div className="h-full flex flex-col md:flex-row relative z-10">
+          <SpotlightCard
+            className="md:col-span-2 group"
+            spotlightColor="rgba(234, 179, 8, 0.15)"
+          >
+            <div
+              className="h-full flex flex-col md:flex-row relative z-10"
+              onMouseEnter={() => trackFeatureInteraction('Emotion Detection', 'hover')}
+            >
               {/* Text Content (40%) */}
               <div className="w-full md:w-[55%] p-8 md:p-10 flex flex-col justify-center relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-dark-surface via-dark-surface/80 to-transparent z-0" />
@@ -120,8 +132,14 @@ const Work = () => {
           </SpotlightCard>
 
           {/* Feature 2: Word Clouds (Tall/Square - Spans 1 col) */}
-          <SpotlightCard className="md:col-span-1 group" spotlightColor="rgba(168, 85, 247, 0.15)">
-            <div className="h-full flex flex-col relative z-10">
+          <SpotlightCard
+            className="md:col-span-1 group"
+            spotlightColor="rgba(168, 85, 247, 0.15)"
+          >
+            <div
+              className="h-full flex flex-col relative z-10"
+              onMouseEnter={() => trackFeatureInteraction('Word Clouds', 'hover')}
+            >
               <div className="p-6">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
@@ -143,8 +161,14 @@ const Work = () => {
           </SpotlightCard>
 
           {/* Feature 3: Smart Summaries (Square - Spans 1 col) */}
-          <SpotlightCard className="md:col-span-1 group" spotlightColor="rgba(34, 197, 94, 0.15)">
-            <div className="h-full flex flex-col relative z-10">
+          <SpotlightCard
+            className="md:col-span-1 group"
+            spotlightColor="rgba(34, 197, 94, 0.15)"
+          >
+            <div
+              className="h-full flex flex-col relative z-10"
+              onMouseEnter={() => trackFeatureInteraction('Smart Summaries', 'hover')}
+            >
               <div className="p-6">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
@@ -166,8 +190,14 @@ const Work = () => {
           </SpotlightCard>
 
           {/* Feature 4: Custom Preferences (Large - Spans 2 cols) */}
-          <SpotlightCard className="md:col-span-2 group" spotlightColor="rgba(59, 130, 246, 0.15)">
-            <div className="h-full flex flex-col md:flex-row relative z-10">
+          <SpotlightCard
+            className="md:col-span-2 group"
+            spotlightColor="rgba(59, 130, 246, 0.15)"
+          >
+            <div
+              className="h-full flex flex-col md:flex-row relative z-10"
+              onMouseEnter={() => trackFeatureInteraction('Smart Search & Filters', 'hover')}
+            >
               {/* Text Content (55%) */}
               <div className="w-full md:w-[55%] p-8 md:p-10 flex flex-col justify-center relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-dark-surface via-dark-surface/80 to-transparent z-0" />
@@ -210,6 +240,7 @@ const Work = () => {
               href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackCTAClick('Get Started Now', 'work_section', 'https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd')}
               className="btn-primary inline-flex"
             >
               Get Started Now

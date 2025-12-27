@@ -1,10 +1,17 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Chrome, Zap, Shield, Star, Youtube } from 'lucide-react';
 import { useExtension } from '../context/ExtensionContext';
 import mainFrameImg from '../assets/product-images/main-frame2.png';
+import { trackSectionView, trackChromeStoreClick, trackYouTubeClick } from '../utils/analytics';
 
 const Hero = () => {
   const { isInstalled } = useExtension();
+
+  // Track hero section view
+  React.useEffect(() => {
+    trackSectionView('Hero');
+  }, []);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32 pb-20 bg-dark-bg">
@@ -64,6 +71,7 @@ const Hero = () => {
                 href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackYouTubeClick('hero')}
                 className="btn-primary text-lg px-8 py-4 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 group bg-red-600 hover:bg-red-700 border-red-500/50 text-white"
               >
                 <Youtube size={24} />
@@ -77,6 +85,7 @@ const Hero = () => {
                 href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackChromeStoreClick('hero', isInstalled)}
                 className="btn-primary text-lg px-8 py-4 shadow-xl shadow-golden/20 hover:shadow-golden/40 group"
               >
                 <Chrome size={24} />
