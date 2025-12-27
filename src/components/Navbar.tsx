@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Chrome, Menu, X, Youtube } from 'lucide-react';
 import logo from '../assets/icons/icon128.svg';
 import { useExtension } from '../context/ExtensionContext';
-import { trackChromeStoreClick, trackEvent } from '../utils/analytics';
+import { trackChromeStoreClick, trackYouTubeClick, trackNavClick, trackMobileMenu } from '../utils/analytics';
 
 const navLinks = [
   { name: 'Features', href: '#work' },
@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-      <motion.div 
+      <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className="glass-panel rounded-full px-6 py-3 flex items-center justify-between gap-8 min-w-[320px] md:min-w-[700px]"
@@ -30,9 +30,10 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-1 bg-dark-surface/50 p-1 rounded-full border border-dark-border/50 backdrop-blur-md">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => trackNavClick(link.name, link.href)}
               className="px-5 py-2.5 rounded-full text-sm font-medium text-text-secondary hover:bg-dark-elevated hover:text-text-primary transition-all duration-300"
             >
               {link.name}
@@ -43,22 +44,22 @@ const Navbar = () => {
         {/* CTA Button */}
         <div className="hidden md:block">
           {isInstalled ? (
-            <a 
-              href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true" 
+            <a
+              href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackEvent('Navigation', 'click', 'YouTube Button')}
+              onClick={() => trackYouTubeClick('navbar')}
               className="btn-primary text-sm px-5 py-2.5 group bg-red-600 hover:bg-red-700 border-red-500/50 text-white"
             >
               <Youtube size={18} />
               <span>Open YouTube</span>
             </a>
           ) : (
-            <a 
-              href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd" 
+            <a
+              href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackChromeStoreClick}
+              onClick={() => trackChromeStoreClick('navbar', isInstalled)}
               className="btn-primary text-sm px-5 py-2.5 group"
             >
               <Chrome size={18} />
@@ -68,9 +69,13 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button 
+        <button
           className="md:hidden text-text-primary"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            const newState = !isOpen;
+            setIsOpen(newState);
+            trackMobileMenu(newState ? 'open' : 'close');
+          }}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -79,7 +84,7 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -87,32 +92,35 @@ const Navbar = () => {
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
+                <a
+                  key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    trackNavClick(link.name, link.href);
+                  }}
                   className="text-lg font-medium text-text-primary py-2 border-b border-dark-border/50 last:border-0"
                 >
                   {link.name}
                 </a>
               ))}
               {isInstalled ? (
-                <a 
-                  href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true" 
+                <a
+                  href="https://www.youtube.com/watch?v=BEWz4SXfyCQ#cometsai=true"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackEvent('Navigation', 'click', 'YouTube Button - Mobile')}
+                  onClick={() => trackYouTubeClick('navbar_mobile')}
                   className="btn-primary w-full justify-center mt-4 gap-2 bg-red-600 hover:bg-red-700 border-red-500/50 text-white"
                 >
                   <Youtube size={18} />
                   <span>Open YouTube</span>
                 </a>
               ) : (
-                <a 
-                  href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd" 
+                <a
+                  href="https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={trackChromeStoreClick}
+                  onClick={() => trackChromeStoreClick('navbar_mobile', isInstalled)}
                   className="btn-primary w-full justify-center mt-4 gap-2"
                 >
                   <Chrome size={18} />

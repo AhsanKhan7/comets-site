@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
-import { trackFAQClick } from '../utils/analytics';
+import { trackFAQClick, trackSectionView } from '../utils/analytics';
 
 const faqs = [
   {
@@ -33,6 +33,11 @@ const faqs = [
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  // Track FAQ section view
+  React.useEffect(() => {
+    trackSectionView('FAQ');
+  }, []);
+
   return (
     <section id="faq" className="py-32 bg-dark-bg">
       <div className="container mx-auto max-w-3xl px-6">
@@ -63,10 +68,9 @@ const FAQ = () => {
               <div
                 onClick={() => {
                   const newIndex = openIndex === index ? null : index;
+                  const action = newIndex === index ? 'expand' : 'collapse';
                   setOpenIndex(newIndex);
-                  if (newIndex === index) {
-                    trackFAQClick(faq.question);
-                  }
+                  trackFAQClick(faq.question, action);
                 }}
                 className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
               >
