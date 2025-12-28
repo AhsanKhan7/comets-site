@@ -54,6 +54,26 @@ export const initMixpanel = (token: string) => {
 };
 
 // ============================================================================
+// HELPER FUNCTIONS
+// ============================================================================
+
+/**
+ * Check if Mixpanel is properly initialized with a token
+ */
+const isMixpanelReady = () => {
+  const token = import.meta.env.VITE_MIXPANEL_TOKEN;
+  return !!token;
+};
+
+/**
+ * Check if GA is properly initialized with a token
+ */
+const isGAReady = () => {
+  const token = import.meta.env.VITE_GA_MEASUREMENT_ID;
+  return !!token;
+};
+
+// ============================================================================
 // USER IDENTIFICATION & PROPERTIES
 // ============================================================================
 
@@ -62,6 +82,7 @@ export const initMixpanel = (token: string) => {
  * @param properties - User properties to set
  */
 export const setUserProperties = (properties: Record<string, any>) => {
+  if (!isMixpanelReady()) return;
   mixpanel.people.set(properties);
 };
 
@@ -69,6 +90,8 @@ export const setUserProperties = (properties: Record<string, any>) => {
  * Identify user and set initial properties
  */
 export const identifyUser = () => {
+  if (!isMixpanelReady()) return null;
+
   // Generate or retrieve anonymous user ID
   const userId = mixpanel.get_distinct_id();
 
@@ -97,20 +120,24 @@ export const identifyUser = () => {
  */
 export const trackPageView = (path: string, title?: string) => {
   // Google Analytics
-  ReactGA.send({
-    hitType: 'pageview',
-    page: path,
-    title: title || document.title,
-  });
+  if (isGAReady()) {
+    ReactGA.send({
+      hitType: 'pageview',
+      page: path,
+      title: title || document.title,
+    });
+  }
 
   // Mixpanel
-  mixpanel.track('Page View', {
-    page_path: path,
-    page_title: title || document.title,
-    page_url: window.location.href,
-    referrer: document.referrer,
-    url_params: Object.fromEntries(new URLSearchParams(window.location.search)),
-  });
+  if (isMixpanelReady()) {
+    mixpanel.track('Page View', {
+      page_path: path,
+      page_title: title || document.title,
+      page_url: window.location.href,
+      referrer: document.referrer,
+      url_params: Object.fromEntries(new URLSearchParams(window.location.search)),
+    });
+  }
 };
 
 // ============================================================================
@@ -133,30 +160,34 @@ export const trackEvent = (
   additionalProps?: Record<string, any>
 ) => {
   // Google Analytics
-  ReactGA.event({
-    category,
-    action,
-    label,
-    value,
-  });
+  if (isGAReady()) {
+    ReactGA.event({
+      category,
+      action,
+      label,
+      value,
+    });
 
-  ReactGA.gtag('event', action, {
-    event_category: category,
-    event_label: label,
-    value: value,
-    platform: 'website',
-  });
+    ReactGA.gtag('event', action, {
+      event_category: category,
+      event_label: label,
+      value: value,
+      platform: 'website',
+    });
+  }
 
   // Mixpanel with rich properties
-  mixpanel.track(action, {
-    category,
-    label,
-    value,
-    page_url: window.location.href,
-    page_path: window.location.pathname,
-    timestamp: new Date().toISOString(),
-    ...additionalProps,
-  });
+  if (isMixpanelReady()) {
+    mixpanel.track(action, {
+      category,
+      label,
+      value,
+      page_url: window.location.href,
+      page_path: window.location.pathname,
+      timestamp: new Date().toISOString(),
+      ...additionalProps,
+    });
+  }
 };
 
 // ============================================================================
@@ -169,12 +200,26 @@ export const trackEvent = (
  * @param isInstalled - Whether extension is already installed
  */
 export const trackChromeStoreClick = (location: string = 'unknown', isInstalled: boolean = false) => {
-  trackEvent('CTA', 'Chrome Web Store Click', location, undefined, {
-    cta_location: location,
-    extension_installed: isInstalled,
-    button_text: isInstalled ? 'Leave a Review' : 'Add to Chrome',
-    destination_url: 'https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd',
-  });
+  // GA: Keep original action 'click' and label 'Chrome Web Store Button'
+  if (isGAReady()) {
+    ReactGA.event({
+      category: 'CTA',
+      action: 'click',
+      label: 'Chrome Web Store Button',
+    });
+  }
+
+  // Mixpanel: Keep the rich detailed data
+  if (isMixpanelReady()) {
+    mixpanel.track('Chrome Web Store Click', {
+      category: 'CTA',
+      cta_location: location,
+      extension_installed: isInstalled,
+      button_text: isInstalled ? 'Leave a Review' : 'Add to Chrome',
+      destination_url: 'https://chromewebstore.google.com/detail/comets-ai/lcpondbkhpeammcjghmlflopdheombbd',
+      page_url: window.location.href,
+    });
+  }
 };
 
 /**
@@ -182,11 +227,25 @@ export const trackChromeStoreClick = (location: string = 'unknown', isInstalled:
  * @param location - Where the link was clicked
  */
 export const trackYouTubeClick = (location: string = 'unknown') => {
-  trackEvent('CTA', 'YouTube Link Click', location, undefined, {
-    cta_location: location,
-    button_text: 'Open YouTube',
-    destination_url: 'https://www.youtube.com',
-  });
+  // GA: Keep original action 'click' and label 'YouTube Button'
+  if (isGAReady()) {
+    ReactGA.event({
+      category: 'Navigation',
+      action: 'click',
+      label: location.includes('mobile') ? 'YouTube Button - Mobile' : 'YouTube Button',
+    });
+  }
+
+  // Mixpanel: Keep the rich detailed data
+  if (isMixpanelReady()) {
+    mixpanel.track('YouTube Link Click', {
+      category: 'CTA',
+      cta_location: location,
+      button_text: 'Open YouTube',
+      destination_url: 'https://www.youtube.com',
+      page_url: window.location.href,
+    });
+  }
 };
 
 /**
@@ -196,11 +255,25 @@ export const trackYouTubeClick = (location: string = 'unknown') => {
  * @param destinationUrl - Where the CTA leads
  */
 export const trackCTAClick = (ctaName: string, location: string, destinationUrl?: string) => {
-  trackEvent('CTA', 'CTA Click', ctaName, undefined, {
-    cta_name: ctaName,
-    cta_location: location,
-    destination_url: destinationUrl,
-  });
+  // GA
+  if (isGAReady()) {
+    ReactGA.event({
+      category: 'CTA',
+      action: 'click',
+      label: ctaName,
+    });
+  }
+
+  // Mixpanel
+  if (isMixpanelReady()) {
+    mixpanel.track('CTA Click', {
+      category: 'CTA',
+      cta_name: ctaName,
+      cta_location: location,
+      destination_url: destinationUrl,
+      page_url: window.location.href,
+    });
+  }
 };
 
 // ============================================================================
@@ -212,9 +285,23 @@ export const trackCTAClick = (ctaName: string, location: string, destinationUrl?
  * @param sectionName - Name of the section
  */
 export const trackSectionView = (sectionName: string) => {
-  trackEvent('Engagement', 'Section View', sectionName, undefined, {
-    section_name: sectionName,
-  });
+  // GA: Keep original action 'section_view'
+  if (isGAReady()) {
+    ReactGA.event({
+      category: 'Engagement',
+      action: 'section_view',
+      label: sectionName,
+    });
+  }
+
+  // Mixpanel
+  if (isMixpanelReady()) {
+    mixpanel.track('Section View', {
+      category: 'Engagement',
+      section_name: sectionName,
+      page_url: window.location.href,
+    });
+  }
 };
 
 /**
@@ -226,10 +313,24 @@ export const trackFeatureInteraction = (
   featureName: string,
   interactionType: 'hover' | 'click' | 'view'
 ) => {
-  trackEvent('Feature', 'Feature Interaction', featureName, undefined, {
-    feature_name: featureName,
-    interaction_type: interactionType,
-  });
+  // GA
+  if (isGAReady()) {
+    ReactGA.event({
+      category: 'Feature',
+      action: interactionType,
+      label: featureName,
+    });
+  }
+
+  // Mixpanel
+  if (isMixpanelReady()) {
+    mixpanel.track('Feature Interaction', {
+      category: 'Feature',
+      feature_name: featureName,
+      interaction_type: interactionType,
+      page_url: window.location.href,
+    });
+  }
 };
 
 // ============================================================================
@@ -242,10 +343,24 @@ export const trackFeatureInteraction = (
  * @param action - Action taken (expand or collapse)
  */
 export const trackFAQClick = (question: string, action: 'expand' | 'collapse' = 'expand') => {
-  trackEvent('FAQ', 'FAQ Interaction', question, undefined, {
-    faq_question: question,
-    action: action,
-  });
+  // GA: Keep original action 'expand' (or 'collapse')
+  if (isGAReady()) {
+    ReactGA.event({
+      category: 'FAQ',
+      action: action,
+      label: question,
+    });
+  }
+
+  // Mixpanel
+  if (isMixpanelReady()) {
+    mixpanel.track('FAQ Interaction', {
+      category: 'FAQ',
+      faq_question: question,
+      action: action,
+      page_url: window.location.href,
+    });
+  }
 };
 
 // ============================================================================
@@ -258,10 +373,24 @@ export const trackFAQClick = (question: string, action: 'expand' | 'collapse' = 
  * @param destination - Where the link leads
  */
 export const trackNavClick = (linkName: string, destination: string) => {
-  trackEvent('Navigation', 'Nav Link Click', linkName, undefined, {
-    link_name: linkName,
-    destination: destination,
-  });
+  // GA
+  if (isGAReady()) {
+    ReactGA.event({
+      category: 'Navigation',
+      action: 'click',
+      label: linkName,
+    });
+  }
+
+  // Mixpanel
+  if (isMixpanelReady()) {
+    mixpanel.track('Nav Link Click', {
+      category: 'Navigation',
+      link_name: linkName,
+      destination: destination,
+      page_url: window.location.href,
+    });
+  }
 };
 
 /**
@@ -269,10 +398,25 @@ export const trackNavClick = (linkName: string, destination: string) => {
  * @param action - Action taken (open or close)
  */
 export const trackMobileMenu = (action: 'open' | 'close') => {
-  trackEvent('Navigation', 'Mobile Menu', action, undefined, {
-    action: action,
-  });
+  // GA
+  if (isGAReady()) {
+    ReactGA.event({
+      category: 'Navigation',
+      action: `mobile_menu_${action}`,
+      label: action,
+    });
+  }
+
+  // Mixpanel
+  if (isMixpanelReady()) {
+    mixpanel.track('Mobile Menu', {
+      category: 'Navigation',
+      action: action,
+      page_url: window.location.href,
+    });
+  }
 };
+
 
 // ============================================================================
 // SCROLL DEPTH TRACKING
@@ -314,7 +458,7 @@ export const initScrollTracking = () => {
 
   const handleScroll = () => {
     clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
+    scrollTimeout = window.setTimeout(() => {
       trackScrollDepth();
     }, 150); // Debounce scroll events
   };
@@ -340,11 +484,13 @@ export const trackTimeOnPage = () => {
   const handleBeforeUnload = () => {
     const timeSpent = Math.round((Date.now() - startTime) / 1000); // in seconds
 
-    mixpanel.track('Time on Page', {
-      time_spent_seconds: timeSpent,
-      page_url: window.location.href,
-      page_path: window.location.pathname,
-    });
+    if (isMixpanelReady()) {
+      mixpanel.track('Time on Page', {
+        time_spent_seconds: timeSpent,
+        page_url: window.location.href,
+        page_path: window.location.pathname,
+      });
+    }
   };
 
   window.addEventListener('beforeunload', handleBeforeUnload);
@@ -386,6 +532,8 @@ export const trackFooterLinkClick = (linkName: string, url: string) => {
  * @param isInstalled - Whether the extension is installed
  */
 export const trackExtensionStatus = (isInstalled: boolean) => {
+  if (!isMixpanelReady()) return;
+
   mixpanel.people.set({
     extension_installed: isInstalled,
     last_status_check: new Date().toISOString(),
@@ -395,4 +543,3 @@ export const trackExtensionStatus = (isInstalled: boolean) => {
     extension_installed: isInstalled,
   });
 };
-

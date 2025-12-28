@@ -147,7 +147,7 @@ const Work = () => {
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-text-primary leading-tight">Visual Insights & Summaries</h3>
                 </div>
-                <p className="text-text-secondary text-base sm:text-lg leading-relaxed">Visualize trending topics with word clouds and patterns. Perfect for researchers looking to analyze YouTube comments at scale without reading every thread.</p>
+                <p className="text-text-secondary text-base sm:text-lg leading-relaxed">Analyze YouTube comments at scale via Topic-Picker</p>
               </div>
 
               <div className="mt-auto relative flex-1 min-h-[200px] w-full">
