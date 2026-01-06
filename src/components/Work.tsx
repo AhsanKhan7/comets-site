@@ -115,7 +115,8 @@ const Work = () => {
                     </div>
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">AI Sentiment & Emotion Analysis</h3>
                   </div>
-                  <p className="text-text-secondary text-lg leading-relaxed">Our advanced YouTube comment sentiment analysis tool detects joy, frustration, and sarcasm in real-time. Get an instant emotional overview of any comment section.</p>
+                  <p className="hidden md:block text-text-secondary text-lg leading-relaxed">Our advanced YouTube comment sentiment analysis tool detects joy, frustration, and sarcasm in real-time. Get an instant emotional overview of any comment section.</p>
+                  <p className="block md:hidden text-text-secondary text-lg leading-relaxed line-clamp-2">Detect joy, frustration, and sarcasm in real-time for an instant emotional overview.</p>
                 </div>
               </div>
 
@@ -208,7 +209,8 @@ const Work = () => {
                     </div>
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">Smart Search & Filters</h3>
                   </div>
-                  <p className="text-text-secondary text-lg leading-relaxed">The most powerful way to search YouTube comments. Filter by keyword, timestamp, or emotion to find specific comments or questions in seconds.</p>
+                  <p className="hidden md:block text-text-secondary text-lg leading-relaxed">The most powerful way to search YouTube comments. Filter by keyword, timestamp, or emotion to find specific comments or questions in seconds.</p>
+                  <p className="block md:hidden text-text-secondary text-lg leading-relaxed line-clamp-2">Filter by keyword, timestamp, or emotion to find specific comments in seconds.</p>
                 </div>
               </div>
 
