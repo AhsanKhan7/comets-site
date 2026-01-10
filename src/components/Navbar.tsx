@@ -4,6 +4,7 @@ import { Chrome, Menu, X, Youtube } from 'lucide-react';
 import logo from '../assets/icons/icon128.svg';
 import { useExtension } from '../context/ExtensionContext';
 import { trackChromeStoreClick, trackYouTubeClick, trackNavClick, trackMobileMenu } from '../utils/analytics';
+import { ChromeLogo } from './icons/ChromeLogo';
 
 const navLinks = [
   { name: 'Features', href: '#work' },
@@ -24,7 +25,7 @@ const Navbar = () => {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
           <img src={logo} alt="Comets AI" className="w-8 h-8 object-contain" />
-          <span className="text-xl font-bold tracking-tighter text-text-primary">Comets</span>
+          <span className="text-xl font-bold tracking-tighter text-text-primary">Comets AI</span>
         </a>
 
         {/* Desktop Menu */}
@@ -60,9 +61,9 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackChromeStoreClick('navbar', isInstalled)}
-              className="btn-primary text-sm px-5 py-2.5 group"
+              className="btn-primary flex items-center gap-2 text-sm px-5 py-2.5 group"
             >
-              <Chrome size={18} />
+              <ChromeLogo size={18} />
               <span>Add to Chrome</span>
             </a>
           )}
