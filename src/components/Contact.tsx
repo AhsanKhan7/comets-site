@@ -4,6 +4,7 @@ import { Chrome, ArrowRight, Star } from 'lucide-react';
 import logo from '../assets/icons/icon128.svg';
 import { useExtension } from '../context/ExtensionContext';
 import { trackSectionView, trackChromeStoreClick, trackFooterLinkClick } from '../utils/analytics';
+import { ChromeLogo } from './icons/ChromeLogo';
 
 const Contact = () => {
   const { isInstalled } = useExtension();
@@ -75,8 +76,8 @@ const Contact = () => {
                 onClick={() => trackChromeStoreClick('contact', isInstalled)}
                 className="btn-primary text-xl px-10 py-5 inline-flex shadow-2xl shadow-golden/30"
               >
-                <Chrome size={24} />
-                <span>Add to Chrome for Free</span>
+                <ChromeLogo size={24} />
+                <span>Add to Chrome — Free</span>
                 <ArrowRight size={20} />
               </motion.a>
             )}

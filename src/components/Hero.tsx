@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Chrome, Zap, Shield, Star, Youtube } from 'lucide-react';
+import { ArrowUpRight, Zap, Shield, Star, Youtube } from 'lucide-react';
+import { ChromeLogo } from './icons/ChromeLogo';
 import { useExtension } from '../context/ExtensionContext';
 import mainFrameImg from '../assets/product-images/main-frame2.png';
 import { trackSectionView, trackChromeStoreClick, trackYouTubeClick } from '../utils/analytics';
@@ -40,14 +41,14 @@ const Hero = () => {
               </>
             ) : (
               <>
-                YouTube Comment Search <br />
-                <span className="font-serif italic font-normal text-golden">& AI Analyzer Tool</span>
+                Search YouTube Comments <br />
+                <span className="font-serif italic font-normal text-golden">& AI Analyzer Extension</span>
               </>
             )}
           </motion.h1>
 
           {/* Subheading */}
-          <motion.p
+          {/* <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -57,7 +58,7 @@ const Hero = () => {
               ? "Comets AI is installed and ready. Head over to YouTube to start analyzing comments."
               : "The easiest way to search YouTube comments by keyword, timestamp, or topic. Analyze sentiment and find specific comments instantly with our AI-powered extension."
             }
-          </motion.p>
+          </motion.p> */}
 
           {/* CTA Buttons */}
           <motion.div
@@ -88,8 +89,9 @@ const Hero = () => {
                 onClick={() => trackChromeStoreClick('hero', isInstalled)}
                 className="btn-primary text-lg px-8 py-4 shadow-xl shadow-golden/20 hover:shadow-golden/40 group"
               >
-                <Chrome size={24} />
-                <span className="whitespace-nowrap"><span className="inline sm:hidden">Add to Chrome</span><span className="hidden sm:inline">Add to Chrome - It's Free</span></span>
+                <ChromeLogo size={24} />
+
+                <span className="whitespace-nowrap"><span className="inline sm:hidden">Add to Chrome</span><span className="hidden sm:inline">Add to Chrome — Free</span></span>
                 <div className="bg-white/20 rounded-full p-1 group-hover:rotate-45 transition-transform duration-300">
                   <ArrowUpRight size={16} />
                 </div>
@@ -97,21 +99,21 @@ const Hero = () => {
             )}
 
             {/* User Reviews for later */}
-            {/* <div className="flex items-center gap-2">
-              <div className="flex -space-x-3">
+            <div className="flex items-center gap-2">
+              {/* <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="w-10 h-10 rounded-full border-2 border-dark-bg bg-dark-surface overflow-hidden">
                     <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" className="w-full h-full object-cover" />
                   </div>
                 ))}
-              </div>
+              </div> */}
               <div className="flex flex-col items-start ml-2">
                 <div className="flex text-golden">
                   {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={14} fill="currentColor" />)}
                 </div>
-                <span className="text-sm text-text-muted font-medium">Trusted by 10,000+ users</span>
+                <span className="text-sm text-text-muted font-medium">Trusted by 1000+ users</span>
               </div>
-            </div> */}
+            </div>
           </motion.div>
 
           {/* Hero Image / Dashboard Preview */}

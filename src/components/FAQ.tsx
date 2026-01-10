@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     question: "Do I need technical skills?",
-    answer: "If you can click \"Add to Chrome,\" you're set. Designed for everyone, not just tech experts."
+    answer: "If you can click \"Add to Chrome — Free,\" you're set. Designed for everyone, not just tech experts."
   }
 ];
 
