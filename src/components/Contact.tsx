@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Chrome, ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import logo from '../assets/icons/icon128.svg';
 import { useExtension } from '../context/ExtensionContext';
 import { trackSectionView, trackChromeStoreClick, trackFooterLinkClick } from '../utils/analytics';
