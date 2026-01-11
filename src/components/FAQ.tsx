@@ -51,7 +51,7 @@ const FAQ = () => {
             Common <span className="font-serif italic font-normal text-golden">Questions</span>
           </h2>
           <p className="text-lg sm:text-xl text-text-secondary">
-            Everything you need to know about the Comets AI YouTube comment search tool.
+            Everything you need to know about the Comets AI YouTube comments search tool.
           </p>
         </motion.div>
 

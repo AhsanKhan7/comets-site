@@ -88,7 +88,7 @@ const Work = () => {
               transition={{ delay: 0.1 }}
               className="text-lg sm:text-xl text-text-secondary leading-relaxed"
             >
-              The ultimate YouTube comment search tool. We help creators and brands analyze YouTube comments with precision AI tools designed for clarity.
+              The ultimate YouTube comments search tool. We help creators and brands analyze YouTube comments with precision AI tools designed for clarity.
             </motion.p>
           </div>
         </div>
@@ -233,7 +233,7 @@ const Work = () => {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-8 rounded-[2.5rem] bg-gradient-to-br from-dark-surface to-dark-elevated border border-dark-border p-12 md:p-20 relative overflow-hidden"
+          className="mt-8 rounded-[2.5rem] bg-gradient-to-br from-dark-surface to-dark-elevated border border-dark-border p-6 sm:12 md:p-20 relative overflow-hidden"
         >
           <div className="relative z-10 max-w-3xl">
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-6">Ready to transform your workflow?</h3>
