@@ -42,7 +42,7 @@ const Hero = () => {
             ) : (
               <>
                 Search YouTube Comments <br />
-                <span className="font-serif italic font-normal text-golden">& AI Analyzer Extension</span>
+                <span className="font-serif italic font-normal text-golden">Free Chrome Extension</span>
               </>
             )}
           </motion.h1>
