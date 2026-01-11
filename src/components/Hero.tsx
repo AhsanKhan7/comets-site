@@ -32,7 +32,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-[500] text-text-primary mb-8 leading-[1.1] tracking-tight"
+            className="text-[30px] sm:text-[36px] md:text-[44px] lg:text-[64px] font-[500] text-text-primary mb-8 leading-[1.1] tracking-tight"
           >
             {isInstalled ? (
               <>
@@ -42,7 +42,7 @@ const Hero = () => {
             ) : (
               <>
                 Search YouTube Comments <br />
-                <span className="font-serif italic font-normal text-golden">Free Chrome Extension</span>
+                <span className="font-serif italic font-normal text-golden">AI-Powered Chrome Extension</span>
               </>
             )}
           </motion.h1>
